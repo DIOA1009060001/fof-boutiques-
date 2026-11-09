@@ -1,0 +1,495 @@
+
+
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="theme-color" content="#111111">
+
+<meta name="description" content="FOF Boutique à Gagnoa Commerce : chaussures tendance, pointures 37 à 45. Commandez sur WhatsApp.">
+
+<title>FOF Boutique | Gagnoa Commerce</title>
+
+<style>
+
+:root{--black:#101010;--gold:#d8b66c;--cream:#f7f5f0;--green:#168b4d;--line:#e8e2d6}
+
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:#171717}
+
+header{position:sticky;top:0;z-index:5;background:var(--black);color:#fff;padding:15px 5%;box-shadow:0 3px 18px #0003}
+
+.nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:15px}
+
+.brand{font-size:22px;font-weight:900;letter-spacing:2px}
+
+.brand span{color:var(--gold)}
+
+nav{display:flex;gap:20px}
+
+nav a{color:#eee;text-decoration:none;font-size:14px}
+
+.cartbtn{background:#262626;color:#fff;border:1px solid #555;padding:11px 16px;border-radius:24px;font-weight:bold;cursor:pointer}
+
+.hero{color:white;background:linear-gradient(110deg,#090909f2,#1119),radial-gradient(circle at 80% 20%,#6d552b 0,transparent 45%),#111;padding:75px 5% 80px}
+
+.hero-inner{max-width:1200px;margin:auto}
+
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:3px;font-weight:bold}
+
+.hero h1{font-size:clamp(38px,7vw,68px);line-height:1.03;margin:15px 0;max-width:700px}
+
+.hero p{color:#ddd;max-width:570px;line-height:1.7}
+
+.cta{display:inline-block;background:var(--gold);color:#171717;text-decoration:none;padding:14px 22px;border-radius:4px;font-weight:900;margin-top:12px}
+
+.info{max-width:1200px;margin:-22px auto 0;padding:0 5%;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;position:relative}
+
+.info div{background:white;padding:17px 12px;border:1px solid var(--line);border-radius:8px;text-align:center;font-size:14px;box-shadow:0 5px 18px #0000000d}
+
+main{max-width:1200px;margin:55px auto;padding:0 5%}
+
+.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:22px}
+
+h2{font-size:30px;margin:0 0 8px}
+
+.sub{color:#777;margin:0}
+
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+
+input,select{padding:12px 14px;border:1px solid #ddd;border-radius:5px;background:#fff;font-size:14px}
+
+#search{flex:1;min-width:180px}
+
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+
+.product{background:white;border:1px solid var(--line);border-radius:9px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+
+.product img{width:100%;aspect-ratio:1/1;object-fit:cover;background:#eee;display:block}
+
+.details{padding:13px;display:flex;flex-direction:column;gap:9px;flex:1}
+
+.product h3{font-size:15px;line-height:1.35;margin:0;min-height:40px}
+
+.price{font-size:19px;font-weight:900;color:#151515}
+
+.sizes{color:#777;font-size:12px}
+
+.add{border:0;background:#111;color:#fff;padding:12px;border-radius:4px;font-weight:bold;cursor:pointer}
+
+.noresult{grid-column:1/-1;text-align:center;padding:30px;color:#777}
+
+footer{background:#111;color:white;padding:35px 5%;margin-top:60px}
+
+.foot{max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}
+
+footer p{color:#c5c5c5;line-height:1.7}
+
+.gold{color:var(--gold)}
+
+.cartpanel{position:fixed;right:0;top:0;height:100%;width:min(430px,100%);background:white;z-index:10;box-shadow:-10px 0 35px #0003;padding:22px;transform:translateX(110%);transition:.25s;overflow:auto}
+
+.cartpanel.open{transform:translateX(0)}
+
+.carttop{display:flex;justify-content:space-between;align-items:center}
+
+.close{border:0;background:#eee;border-radius:50%;width:38px;height:38px;font-size:22px;cursor:pointer}
+
+.cartitem{border-bottom:1px solid #eee;padding:13px 0;display:flex;justify-content:space-between;gap:10px;font-size:14px}
+
+.cartitem small{display:block;color:#777;margin-top:5px}
+
+.remove{border:0;background:none;color:#b33;cursor:pointer}
+
+.total{font-size:20px;font-weight:900;padding:20px 0}
+
+.wa{display:block;text-align:center;background:var(--green);color:white;text-decoration:none;padding:15px;border-radius:5px;font-weight:bold}
+
+.empty{color:#777;text-align:center;padding:35px 0}
+
+.overlay{display:none;position:fixed;inset:0;background:#0008;z-index:9}
+
+.overlay.show{display:block}
+
+.cart-note{font-size:12px;color:#777;line-height:1.5}
+
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+@media(max-width:620px){
+
+header{padding:13px 4%}
+
+nav{display:none}
+
+.brand{font-size:18px}
+
+.hero{padding:58px 5%}
+
+.info{grid-template-columns:1fr;margin-top:-12px}
+
+.info div{padding:12px}
+
+main{margin:40px auto}
+
+.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+
+.details{padding:10px}
+
+.product h3{font-size:13px;min-height:36px}
+
+.price{font-size:17px}
+
+.add{padding:10px;font-size:12px}
+
+.sectionhead{display:block}
+
+.sectionhead h2{font-size:26px}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="nav">
+
+<div class="brand">FOF <span>BOUTIQUE</span></div>
+
+<nav>
+
+<a href="#accueil">Accueil</a>
+
+<a href="#catalogue">Chaussures</a>
+
+<a href="#contact">Contact</a>
+
+</nav>
+
+<button class="cartbtn" onclick="openCart()">Mon panier (<span id="count">0</span>)</button>
+
+</div>
+
+</header>
+
+<section class="hero" id="accueil">
+
+<div class="hero-inner">
+
+<div class="eyebrow">STYLE • CONFORT • TENDANCE</div>
+
+<h1>La paire qui donne du style à vos pas.</h1>
+
+<p>Bienvenue chez FOF Boutique. Découvrez notre sélection de chaussures, choisissez votre pointure et envoyez votre commande directement sur WhatsApp.</p>
+
+<a class="cta" href="#catalogue">DÉCOUVRIR LES CHAUSSURES</a>
+
+</div>
+
+</section>
+
+<div class="info">
+
+<div>📍 Gagnoa, Commerce</div>
+
+<div>👟 Pointures disponibles : 37 à 45</div>
+
+<div>💬 Commande simple sur WhatsApp</div>
+
+</div>
+
+<main id="catalogue">
+
+<div class="sectionhead">
+
+<div>
+
+<div class="eyebrow">COLLECTION FOF</div>
+
+<h2>Nos chaussures</h2>
+
+<p class="sub">22 modèles sélectionnés pour vous.</p>
+
+</div>
+
+</div>
+
+<div class="tools">
+
+<input id="search" type="search" placeholder="Rechercher un modèle..." oninput="render()">
+
+<select id="filter" onchange="render()">
+
+<option value="all">Tous les prix</option>
+
+<option value="15000">15 000 F</option>
+
+<option value="13000">13 000 F</option>
+
+<option value="12000">12 000 F</option>
+
+</select>
+
+</div>
+
+<div class="grid" id="products"></div>
+
+</main>
+
+<footer id="contact">
+
+<div class="foot">
+
+<div>
+
+<div class="brand">FOF <span>BOUTIQUE</span></div>
+
+<p>Votre boutique de chaussures à Gagnoa.</p>
+
+</div>
+
+<div>
+
+<strong>Nous contacter</strong>
+
+<p>📍 Gagnoa, Commerce<br>WhatsApp : +225 05 66 40 75 88</p>
+
+<p class="gold">FOF Boutique — Merci pour votre confiance.</p>
+
+</div>
+
+</div>
+
+</footer>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+<aside class="cartpanel" id="cart">
+
+<div class="carttop">
+
+<h2>Mon panier</h2>
+
+<button class="close" onclick="closeCart()" aria-label="Fermer">×</button>
+
+</div>
+
+<div id="cartitems"></div>
+
+<div class="total" id="total"></div>
+
+<p class="cart-note">Votre commande sera envoyée à FOF Boutique sur WhatsApp. La disponibilité des pointures sera confirmée par la boutique.</p>
+
+<a class="wa" id="whatsapp" href="#" target="_blank" rel="noopener">Envoyer ma commande sur WhatsApp</a>
+
+</aside>
+
+<script>
+
+const products=[
+
+{id:1,name:'Puma Suede rouge / blanc',price:15000,file:'1.jpg.JPG',alts:['1.jpg .JPG','1.jpg.jpg']},
+
+{id:2,name:'Puma Suede bleu / blanc',price:15000,file:'2.jpg.JPG',alts:['2.jpg .JPG','2.jpg.jpg']},
+
+{id:3,name:'TN Full White',price:15000,file:'3.jpg.JPG',alts:['3.jpg .JPG','3.jpg.jpg']},
+
+{id:4,name:'Jordan 4 blanc / noir',price:15000,file:'4.jpg.JPG'},
+
+{id:5,name:'Air Max blanc / noir / orange',price:15000,file:'5.jpg.JPG'},
+
+{id:6,name:'New Balance 530 blanc / argent',price:15000,file:'6.jpg.JPG'},
+
+{id:7,name:'OGY noir / bleu',price:15000,file:'7.jpg.JPG'},
+
+{id:8,name:'ASICS Gel Kayano argent / bleu',price:15000,file:'8.jpg.JPG'},
+
+{id:9,name:'Puma Suede noir / blanc',price:15000,file:'9.jpg.JPG'},
+
+{id:10,name:'Adidas Campus noir / rose',price:13000,file:'10.jpg.JPG'},
+
+{id:11,name:'Adidas Campus noir / blanc',price:13000,file:'11.jpg.JPG'},
+
+{id:12,name:'Jordan 4 Full Noir',price:13000,file:'12.jpg.JPG'},
+
+{id:13,name:'Air Force 1 Full Noir',price:13000,file:'13.jpg.JPG'},
+
+{id:14,name:'ASICS Gel Kayano blanc / bleu',price:15000,file:'14.jpg.JPG'},
+
+{id:15,name:'TN Full Noir',price:15000,file:'15.jpg.JPG'},
+
+{id:16,name:'New Balance 9060 Full Noir',price:15000,file:'16.jpg.JPG',alts:['16.jpg']},
+
+{id:17,name:'New Balance noir / jaune',price:15000,file:'17.jpg.JPG'},
+
+{id:18,name:'Air Force 1 Noir Python',price:15000,file:'18.jpg.JPG'},
+
+{id:19,name:'New Balance 2002R beige',price:15000,file:'19.jpg.jpg',alts:['19.jpg.JPG']},
+
+{id:20,name:'Puma Suede Full Noir',price:15000,file:'20.jpg.JPG'},
+
+{id:21,name:'Nike Shox TL Full Noir',price:15000,file:'21.jpg.JPG'},
+
+{id:22,name:'Adidas Runfalcon noir / blanc',price:12000,file:'22.jpg.JPG'}
+
+];
+
+const cart=[];
+
+const money=n=>n.toLocaleString('fr-FR')+' F';
+
+function render(){
+
+const q=document.getElementById('search').value.trim().toLowerCase();
+
+const f=document.getElementById('filter').value;
+
+const list=products.filter(p=>p.name.toLowerCase().includes(q)&&(f==='all'||String(p.price)===f));
+
+document.getElementById('products').innerHTML=list.map(p=>`
+
+<article class="product">
+
+<img src="${encodeURI(p.file)}" alt="${p.name}" loading="lazy" data-id="${p.id}" onerror="nextImage(this)">
+
+<div class="details">
+
+<h3>${p.name}</h3>
+
+<div class="price">${money(p.price)}</div>
+
+<div class="sizes">Pointures : 37 à 45</div>
+
+<button class="add" onclick="addToCart(${p.id})">Ajouter au panier</button>
+
+</div>
+
+</article>`).join('')||'<p class="noresult">Aucun modèle trouvé.</p>';
+
+}
+
+function nextImage(img){
+
+const p=products.find(x=>x.id===Number(img.dataset.id));
+
+if(!p)return;
+
+const options=[...(p.alts||[]),`${p.id}.jpg.jpg`,`${p.id}.JPG`,`${p.id}.jpg`];
+
+const attempt=Number(img.dataset.attempt||0);
+
+if(attempt<options.length){
+
+img.dataset.attempt=attempt+1;
+
+img.src=encodeURI(options[attempt]);
+
+}
+
+}
+
+function addToCart(id){
+
+const p=products.find(x=>x.id===id);
+
+const size=prompt('Quelle pointure souhaitez-vous ? Choisissez entre 37 et 45.');
+
+if(size===null)return;
+
+const s=size.trim();
+
+if(!/^(3[7-9]|4[0-5])$/.test(s)){
+
+alert('Veuillez choisir une pointure entre 37 et 45.');
+
+return;
+
+}
+
+cart.push({...p,size:s});
+
+updateCart();
+
+openCart();
+
+}
+
+function removeItem(i){
+
+cart.splice(i,1);
+
+updateCart();
+
+}
+
+function updateCart(){
+
+document.getElementById('count').textContent=cart.length;
+
+document.getElementById('cartitems').innerHTML=cart.length?
+
+cart.map((p,i)=>`
+
+<div class="cartitem">
+
+<div><strong>${p.name}</strong><small>Pointure : ${p.size} · ${money(p.price)}</small></div>
+
+<button class="remove" onclick="removeItem(${i})">Retirer</button>
+
+</div>`).join(''):'<div class="empty">Votre panier est vide.</div>';
+
+const total=cart.reduce((s,p)=>s+p.price,0);
+
+document.getElementById('total').textContent=cart.length?'Total : '+money(total):'';
+
+const msg='Bonjour FOF Boutique ! Je souhaite commander :\n'+
+
+cart.map(p=>'- '+p.name+' | Pointure '+p.size+' | '+money(p.price)).join('\n')+
+
+'\nTotal : '+money(total)+'\nLieu de livraison/retrait : ';
+
+document.getElementById('whatsapp').href=
+
+'https://wa.me/2250566407588?text='+encodeURIComponent(msg);
+
+document.getElementById('whatsapp').style.display=cart.length?'block':'none';
+
+}
+
+function openCart(){
+
+document.getElementById('cart').classList.add('open');
+
+document.getElementById('overlay').classList.add('show');
+
+}
+
+function closeCart(){
+
+document.getElementById('cart').classList.remove('open');
+
+document.getElementById('overlay').classList.remove('show');
+
+}
+
+render();
+
+updateCart();
+
+</script>
+
+</body>
+
+</html>
