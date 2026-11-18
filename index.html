@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111111">
 
-<!-- Configuration de l'application PWA -->
 <link rel="manifest" href="./manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="FOF Boutique">
@@ -39,8 +38,9 @@ main{max-width:1200px;margin:55px auto;padding:0 5%}
 h2{font-size:30px;margin:0 0 8px}
 .sub{color:#777}
 .tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
-input,select{padding:12px 14px;border:1px solid #ddd;border-radius:5px;background:white;font-size:14px}
-#search{flex:1;min-width:180px}
+input,select,textarea{padding:12px 14px;border:1px solid #ddd;border-radius:5px;background:white;font-size:14px;width:100%;font-family:Arial,sans-serif}
+#search{flex:1;min-width:180px;width:auto}
+#filter{width:auto}
 .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
 .product{background:white;border:1px solid #e8e2d6;border-radius:9px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
 .product img{width:100%;aspect-ratio:1/1;object-fit:cover;background:#eee;display:block}
@@ -62,16 +62,16 @@ footer p{color:#c5c5c5;line-height:1.7}
 .cartitem small{display:block;color:#777;margin-top:5px}
 .remove{border:0;background:none;color:#b33}
 .total{font-size:20px;font-weight:900;padding:20px 0}
-.wa{display:block;text-align:center;background:var(--green);color:white;text-decoration:none;padding:15px;border-radius:5px;font-weight:bold}
+.wa{display:block;width:100%;text-align:center;background:var(--green);color:white;text-decoration:none;padding:15px;border-radius:5px;font-weight:bold;border:0;font-size:15px;cursor:pointer}
 .empty{color:#777;text-align:center;padding:35px 0}
 .overlay{display:none;position:fixed;inset:0;background:#0008;z-index:9}
 .overlay.show{display:block}
 .cart-note{font-size:12px;color:#777;line-height:1.5}
-
-@media(max-width:900px){
-.grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-}
-
+.customer-form{margin-top:22px;border-top:1px solid #eee;padding-top:18px}
+.customer-form h3{margin:0 0 14px}
+.customer-form label{display:block;font-size:13px;font-weight:bold;margin:12px 0 6px}
+.form-note{font-size:12px;color:#777;line-height:1.5}
+@media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:620px){
 header{padding:13px 4%}
 nav{display:none}
@@ -158,10 +158,28 @@ h2{font-size:26px}
 <h2>Mon panier</h2>
 <button class="close" onclick="closeCart()">×</button>
 </div>
+
 <div id="cartitems"></div>
 <div class="total" id="total"></div>
+
+<div class="customer-form">
+<h3>Informations du client</h3>
+
+<label for="customerName">Nom et prénom *</label>
+<input id="customerName" type="text" placeholder="Votre nom complet" autocomplete="name">
+
+<label for="customerPhone">Numéro de téléphone *</label>
+<input id="customerPhone" type="tel" placeholder="Exemple : 0700000000" autocomplete="tel">
+
+<label for="customerAddress">Lieu de livraison ou de retrait *</label>
+<textarea id="customerAddress" rows="2" placeholder="Votre quartier, ville ou lieu de retrait"></textarea>
+
+<p class="form-note">Ces informations permettront à FOF Boutique de vous contacter et de préparer votre commande.</p>
+</div>
+
 <p class="cart-note">La disponibilité des pointures sera confirmée par la boutique.</p>
-<a class="wa" id="whatsapp" href="#" target="_blank" rel="noopener">Envoyer ma commande sur WhatsApp</a>
+
+<button class="wa" id="whatsapp" onclick="sendWhatsApp()">Envoyer ma commande sur WhatsApp</button>
 </aside>
 
 <script>
@@ -209,12 +227,10 @@ p.name.toLowerCase().includes(q)&&
 
 document.getElementById('products').innerHTML=list.map(p=>`
 <article class="product">
-<img
-src="${photoURL(p.file)}"
+<img src="${photoURL(p.file)}"
 alt="${p.name}"
 loading="lazy"
-onerror="this.onerror=null;this.alt='Photo indisponible : ${p.file}';this.style.objectFit='contain';"
->
+onerror="this.onerror=null;this.alt='Photo indisponible : ${p.file}';this.style.objectFit='contain';">
 <div class="details">
 <h3>${p.name}</h3>
 <div class="price">${money(p.price)}</div>
@@ -229,8 +245,8 @@ function addToCart(id){
 const p=products.find(x=>x.id===id);
 const size=prompt('Quelle pointure souhaitez-vous ? Choisissez entre 37 et 45.');
 if(size===null)return;
-const s=size.trim();
 
+const s=size.trim();
 if(!/^(3[7-9]|4[0-5])$/.test(s)){
 alert('Veuillez choisir une pointure entre 37 et 45.');
 return;
@@ -264,23 +280,42 @@ cart.map((p,i)=>`
 const total=cart.reduce((s,p)=>s+p.price,0);
 document.getElementById('total').textContent=
 cart.length?'Total : '+money(total):'';
+}
 
-const msg='Bonjour FOF Boutique ! Je souhaite commander :\n\n'+
-cart.map(p=>
-'- '+p.name+
-' | Pointure '+p.size+
-' | '+money(p.price)+
-'\nPHOTO DE LA CHAUSSURE : '+photoURL(p.file)
+function sendWhatsApp(){
+if(cart.length===0){
+alert('Votre panier est vide. Ajoutez une chaussure avant de commander.');
+return;
+}
+
+const name=document.getElementById('customerName').value.trim();
+const phone=document.getElementById('customerPhone').value.trim();
+const address=document.getElementById('customerAddress').value.trim();
+
+if(!name||!phone||!address){
+alert('Veuillez remplir votre nom, votre numéro et votre lieu de livraison ou de retrait.');
+return;
+}
+
+const total=cart.reduce((s,p)=>s+p.price,0);
+
+const msg=
+'🛍️ NOUVELLE COMMANDE - FOF BOUTIQUE\n\n'+
+'👤 CLIENT : '+name+'\n'+
+'📞 TÉLÉPHONE : '+phone+'\n'+
+'📍 LIVRAISON / RETRAIT : '+address+'\n\n'+
+'👟 ARTICLES COMMANDÉS :\n\n'+
+cart.map((p,i)=>
+(i+1)+'. '+p.name+
+'\nPointure : '+p.size+
+'\nPrix : '+money(p.price)+
+'\nPhoto : '+photoURL(p.file)
 ).join('\n\n')+
-'\n\nTotal : '+money(total)+
-'\nLieu de livraison/retrait : ';
+'\n\n💰 TOTAL : '+money(total)+
+'\n\nMerci de confirmer la disponibilité de ma commande.';
 
-const whatsappURL=
-'https://wa.me/2250566407588?text='+encodeURIComponent(msg);
-
-document.getElementById('whatsapp').href=whatsappURL;
-document.getElementById('whatsapp').style.display=
-cart.length?'block':'none';
+const url='https://wa.me/2250566407588?text='+encodeURIComponent(msg);
+window.open(url,'_blank');
 }
 
 function openCart(){
@@ -297,18 +332,13 @@ render();
 updateCart();
 </script>
 
-<!-- Activation du service worker PWA -->
 <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('./service-worker.js')
-      .then(function() {
-        console.log('FOF Boutique est prête !');
-      })
-      .catch(function(error) {
-        console.log('Erreur PWA :', error);
-      });
-  });
+if('serviceWorker' in navigator){
+window.addEventListener('load',function(){
+navigator.serviceWorker.register('./service-worker.js')
+.then(function(){console.log('FOF Boutique est prête !');})
+.catch(function(error){console.log('Erreur PWA :',error);});
+});
 }
 </script>
 
