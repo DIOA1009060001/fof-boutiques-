@@ -1,0 +1,24 @@
+FOF BOUTIQUE — FICHIERS PWA
+
+1) Dans le dépôt GitHub fof-boutiques-, téléverser manifest.json et service-worker.js à la racine (au même niveau que index.html).
+2) Créer un dossier icons à la racine et y téléverser les trois images PNG fournies.
+3) Dans index.html, ajouter dans <head>, avant </head> :
+   <link rel="manifest" href="./manifest.json">
+   <link rel="apple-touch-icon" href="./icons/icon-192.png">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+4) Juste avant </body>, ajouter :
+   <script>
+     if ('serviceWorker' in navigator) {
+       window.addEventListener('load', () => {
+         navigator.serviceWorker.register('./service-worker.js').catch(console.error);
+       });
+     }
+   </script>
+
+IMPORTANT : ne remplace pas le contenu existant de index.html. Ajoute seulement les lignes ci-dessus. Ne supprime pas le dossier images ni les photos. Les prix, modèles, pointures, adresse et numéro WhatsApp restent dans ton index.html actuel.
+
+INSTALLER SUR IPHONE : après publication GitHub Pages et ouverture du site dans Safari, toucher Partager, puis Sur l'écran d'accueil, activer éventuellement « Ouvrir comme app web », puis Ajouter.
+INSTALLER SUR ANDROID : ouvrir le site dans Chrome, toucher le menu ⋮ puis « Installer l'application » ou « Ajouter à l'écran d'accueil ».
+
+Le service worker permet de conserver en cache les pages et ressources déjà consultées. Une première ouverture avec Internet est nécessaire et les images non encore chargées peuvent nécessiter Internet.
