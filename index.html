@@ -5,6 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111111">
+<meta name="description" content="FOF Boutique à Gagnoa Commerce : chaussures tendance, pointures 37 à 45. Commandez sur WhatsApp.">
+<title>FOF Boutique | Gagnoa Commerce</title>
 
 <link rel="manifest" href="./manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,43 +14,42 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <link rel="apple-touch-icon" href="./icon-192.png">
 
-<title>FOF Boutique | Gagnoa Commerce</title>
-
 <style>
-:root{--black:#101010;--gold:#d8b66c;--cream:#f7f5f0;--green:#168b4d}
+:root{--black:#101010;--gold:#d8b66c;--cream:#f7f5f0;--muted:#777;--line:#e8e2d6;--green:#168b4d}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:Arial,sans-serif;background:var(--cream);color:#171717}
-header{position:sticky;top:0;z-index:5;background:#101010;color:white;padding:15px 5%}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:#171717}
+header{position:sticky;top:0;z-index:5;background:var(--black);color:#fff;padding:15px 5%;box-shadow:0 3px 18px #0003}
 .nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:15px}
 .brand{font-size:22px;font-weight:900;letter-spacing:2px}
 .brand span{color:var(--gold)}
 nav{display:flex;gap:20px}
-nav a{color:white;text-decoration:none;font-size:14px}
-.cartbtn{background:#262626;color:white;border:1px solid #555;padding:11px 16px;border-radius:24px;font-weight:bold}
-.hero{color:white;background:linear-gradient(110deg,#090909f2,#1119),#111;padding:75px 5% 80px}
+nav a{color:#eee;text-decoration:none;font-size:14px}
+button{cursor:pointer}
+.cartbtn{background:#262626;color:#fff;border:1px solid #555;padding:11px 16px;border-radius:24px;font-weight:bold}
+.hero{color:white;background:linear-gradient(110deg,#090909f2,#1119),radial-gradient(circle at 80% 20%,#6d552b 0,transparent 45%),#111;padding:75px 5% 80px}
 .hero-inner{max-width:1200px;margin:auto}
 .eyebrow{color:var(--gold);font-size:12px;letter-spacing:3px;font-weight:bold}
 .hero h1{font-size:clamp(38px,7vw,68px);line-height:1.03;margin:15px 0;max-width:700px}
 .hero p{color:#ddd;max-width:570px;line-height:1.7}
 .cta{display:inline-block;background:var(--gold);color:#171717;text-decoration:none;padding:14px 22px;border-radius:4px;font-weight:900;margin-top:12px}
 .info{max-width:1200px;margin:-22px auto 0;padding:0 5%;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;position:relative}
-.info div{background:white;padding:17px 12px;border:1px solid #e8e2d6;border-radius:8px;text-align:center;font-size:14px}
+.info div{background:white;padding:17px 12px;border:1px solid var(--line);border-radius:8px;text-align:center;font-size:14px;box-shadow:0 5px 18px #0000000d}
 main{max-width:1200px;margin:55px auto;padding:0 5%}
+.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:22px}
 h2{font-size:30px;margin:0 0 8px}
-.sub{color:#777}
+.sub{color:var(--muted);margin:0}
 .tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
-input,select,textarea{padding:12px 14px;border:1px solid #ddd;border-radius:5px;background:white;font-size:14px;width:100%;font-family:Arial,sans-serif}
+input,select{padding:12px 14px;border:1px solid #ddd;border-radius:5px;background:#fff;font-size:14px;width:100%}
 #search{flex:1;min-width:180px;width:auto}
-#filter{width:auto}
 .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
-.product{background:white;border:1px solid #e8e2d6;border-radius:9px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.product{background:white;border:1px solid var(--line);border-radius:9px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
 .product img{width:100%;aspect-ratio:1/1;object-fit:cover;background:#eee;display:block}
 .details{padding:13px;display:flex;flex-direction:column;gap:9px;flex:1}
 .product h3{font-size:15px;line-height:1.35;margin:0;min-height:40px}
 .price{font-size:19px;font-weight:900}
 .sizes{color:#777;font-size:12px}
-.add{border:0;background:#111;color:white;padding:12px;border-radius:4px;font-weight:bold;cursor:pointer}
+.add{border:0;background:#111;color:#fff;padding:12px;border-radius:4px;font-weight:bold}
 .noresult{grid-column:1/-1;text-align:center;padding:30px;color:#777}
 footer{background:#111;color:white;padding:35px 5%;margin-top:60px}
 .foot{max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}
@@ -62,15 +63,17 @@ footer p{color:#c5c5c5;line-height:1.7}
 .cartitem small{display:block;color:#777;margin-top:5px}
 .remove{border:0;background:none;color:#b33}
 .total{font-size:20px;font-weight:900;padding:20px 0}
-.wa{display:block;width:100%;text-align:center;background:var(--green);color:white;text-decoration:none;padding:15px;border-radius:5px;font-weight:bold;border:0;font-size:15px;cursor:pointer}
+.wa{display:block;text-align:center;background:var(--green);color:white;text-decoration:none;padding:15px;border-radius:5px;font-weight:bold;margin-top:15px}
 .empty{color:#777;text-align:center;padding:35px 0}
 .overlay{display:none;position:fixed;inset:0;background:#0008;z-index:9}
 .overlay.show{display:block}
 .cart-note{font-size:12px;color:#777;line-height:1.5}
-.customer-form{margin-top:22px;border-top:1px solid #eee;padding-top:18px}
-.customer-form h3{margin:0 0 14px}
+.customer-form{background:#f7f5f0;border:1px solid var(--line);padding:15px;border-radius:8px;margin-top:18px}
+.customer-form h3{margin:0 0 12px;font-size:17px}
 .customer-form label{display:block;font-size:13px;font-weight:bold;margin:12px 0 6px}
-.form-note{font-size:12px;color:#777;line-height:1.5}
+.customer-form input{display:block}
+.order-preview{background:#fff;border:1px solid var(--line);padding:12px;border-radius:6px;margin-top:15px;font-size:13px;line-height:1.7}
+.order-preview strong{color:#111}
 @media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:620px){
 header{padding:13px 4%}
@@ -85,7 +88,8 @@ main{margin:40px auto}
 .product h3{font-size:13px;min-height:36px}
 .price{font-size:17px}
 .add{padding:10px;font-size:12px}
-h2{font-size:26px}
+.sectionhead{display:block}
+.sectionhead h2{font-size:26px}
 }
 </style>
 </head>
@@ -120,9 +124,13 @@ h2{font-size:26px}
 </div>
 
 <main id="catalogue">
+<div class="sectionhead">
+<div>
 <div class="eyebrow">COLLECTION FOF</div>
 <h2>Nos chaussures</h2>
 <p class="sub">22 modèles sélectionnés pour vous.</p>
+</div>
+</div>
 
 <div class="tools">
 <input id="search" type="search" placeholder="Rechercher un modèle..." oninput="render()">
@@ -156,7 +164,7 @@ h2{font-size:26px}
 <aside class="cartpanel" id="cart">
 <div class="carttop">
 <h2>Mon panier</h2>
-<button class="close" onclick="closeCart()">×</button>
+<button class="close" onclick="closeCart()" aria-label="Fermer">×</button>
 </div>
 
 <div id="cartitems"></div>
@@ -166,71 +174,67 @@ h2{font-size:26px}
 <h3>Informations du client</h3>
 
 <label for="customerName">Nom et prénom *</label>
-<input id="customerName" type="text" placeholder="Votre nom complet" autocomplete="name">
+<input id="customerName" type="text" placeholder="Ex : Koffi Jean">
 
 <label for="customerPhone">Numéro de téléphone *</label>
-<input id="customerPhone" type="tel" placeholder="Exemple : 0700000000" autocomplete="tel">
+<input id="customerPhone" type="tel" placeholder="Ex : 0700000000">
 
 <label for="customerAddress">Lieu de livraison ou de retrait *</label>
-<textarea id="customerAddress" rows="2" placeholder="Votre quartier, ville ou lieu de retrait"></textarea>
-
-<p class="form-note">Ces informations permettront à FOF Boutique de vous contacter et de préparer votre commande.</p>
+<input id="customerAddress" type="text" placeholder="Ex : Gagnoa, Commerce">
 </div>
 
-<p class="cart-note">La disponibilité des pointures sera confirmée par la boutique.</p>
+<div class="order-preview" id="orderPreview">
+<strong>Récapitulatif du client</strong>
+<p>Le nom et le numéro du client apparaîtront ici.</p>
+</div>
 
-<button class="wa" id="whatsapp" onclick="sendWhatsApp()">Envoyer ma commande sur WhatsApp</button>
+<p class="cart-note">Vérifiez les informations avant d'envoyer votre commande. La disponibilité des pointures sera confirmée par la boutique.</p>
+
+<a class="wa" id="whatsapp" href="#" target="_blank" rel="noopener" onclick="return prepareWhatsApp(event)">
+Envoyer ma commande sur WhatsApp
+</a>
 </aside>
 
 <script>
 const products=[
-{id:1,name:'Puma Suede Rouge / Blanc',price:15000,file:'1.jpg .JPG'},
-{id:2,name:'Puma Suede Bleu / Blanc',price:15000,file:'2.jpg .JPG'},
-{id:3,name:'TN Full White',price:15000,file:'3.jpg .JPG'},
-{id:4,name:'Jordan 4 Blanc / Noir',price:15000,file:'4.jpg.JPG'},
-{id:5,name:'Air Max Blanc / Noir / Orange',price:15000,file:'5.jpg.JPG'},
-{id:6,name:'New Balance 530 Blanc / Argent',price:15000,file:'6.jpg.JPG'},
-{id:7,name:'OGY Noir / Bleu',price:15000,file:'7.jpg.JPG'},
-{id:8,name:'ASICS Gel Kayano Argent / Bleu',price:15000,file:'8.jpg.JPG'},
-{id:9,name:'Puma Suede Noir / Blanc',price:15000,file:'9.jpg.JPG'},
-{id:10,name:'Adidas Campus Noir / Rose',price:13000,file:'10.jpg.JPG'},
-{id:11,name:'Adidas Campus Noir / Blanc',price:13000,file:'11.jpg.JPG'},
+{id:1,name:'Puma Suede rouge / blanc',price:15000,file:'1.jpg.JPG',alts:['1.jpg .JPG','1.jpg.jpg']},
+{id:2,name:'Puma Suede bleu / blanc',price:15000,file:'2.jpg.JPG',alts:['2.jpg .JPG','2.jpg.jpg']},
+{id:3,name:'TN Full White',price:15000,file:'3.jpg.JPG',alts:['3.jpg .JPG','3.jpg.jpg']},
+{id:4,name:'Jordan 4 blanc / noir',price:15000,file:'4.jpg.JPG'},
+{id:5,name:'Air Max blanc / noir / orange',price:15000,file:'5.jpg.JPG'},
+{id:6,name:'New Balance 530 blanc / argent',price:15000,file:'6.jpg.JPG'},
+{id:7,name:'OGY noir / bleu',price:15000,file:'7.jpg.JPG'},
+{id:8,name:'ASICS Gel Kayano argent / bleu',price:15000,file:'8.jpg.JPG'},
+{id:9,name:'Puma Suede noir / blanc',price:15000,file:'9.jpg.JPG'},
+{id:10,name:'Adidas Campus noir / rose',price:13000,file:'10.jpg.JPG'},
+{id:11,name:'Adidas Campus noir / blanc',price:13000,file:'11.jpg.JPG'},
 {id:12,name:'Jordan 4 Full Noir',price:13000,file:'12.jpg.JPG'},
 {id:13,name:'Air Force 1 Full Noir',price:13000,file:'13.jpg.JPG'},
-{id:14,name:'ASICS Gel Kayano Blanc / Bleu',price:15000,file:'14.jpg.JPG'},
+{id:14,name:'ASICS Gel Kayano blanc / bleu',price:15000,file:'14.jpg.JPG'},
 {id:15,name:'TN Full Noir',price:15000,file:'15.jpg.JPG'},
-{id:16,name:'New Balance 9060 Full Noir',price:15000,file:'16.jpg.JPG'},
-{id:17,name:'New Balance Noir / Jaune',price:15000,file:'17.jpg.JPG'},
+{id:16,name:'New Balance 9060 Full Noir',price:15000,file:'16.jpg.JPG',alts:['16.jpg']},
+{id:17,name:'New Balance noir / jaune',price:15000,file:'17.jpg.JPG'},
 {id:18,name:'Air Force 1 Noir Python',price:15000,file:'18.jpg.JPG'},
-{id:19,name:'New Balance 2002R Beige',price:15000,file:'19.jpg.jpg'},
+{id:19,name:'New Balance 2002R beige',price:15000,file:'19.jpg.jpg',alts:['19.jpg.JPG']},
 {id:20,name:'Puma Suede Full Noir',price:15000,file:'20.jpg.JPG'},
 {id:21,name:'Nike Shox TL Full Noir',price:15000,file:'21.jpg.JPG'},
-{id:22,name:'Adidas Runfalcon Noir / Blanc',price:12000,file:'22.jpg.JPG'}
+{id:22,name:'Adidas Runfalcon noir / blanc',price:12000,file:'22.jpg.JPG'}
 ];
 
 const cart=[];
 const money=n=>n.toLocaleString('fr-FR')+' F';
-const siteBase='https://dioa1009060001.github.io/fof-boutiques-/';
-
-function photoURL(file){
-return new URL(file,siteBase).href;
-}
 
 function render(){
 const q=document.getElementById('search').value.trim().toLowerCase();
 const f=document.getElementById('filter').value;
 
 const list=products.filter(p=>
-p.name.toLowerCase().includes(q)&&
-(f==='all'||String(p.price)===f)
+p.name.toLowerCase().includes(q)&&(f==='all'||String(p.price)===f)
 );
 
 document.getElementById('products').innerHTML=list.map(p=>`
 <article class="product">
-<img src="${photoURL(p.file)}"
-alt="${p.name}"
-loading="lazy"
-onerror="this.onerror=null;this.alt='Photo indisponible : ${p.file}';this.style.objectFit='contain';">
+<img src="${encodeURI(p.file)}" alt="${p.name}" loading="lazy" data-id="${p.id}" onerror="nextImage(this)">
 <div class="details">
 <h3>${p.name}</h3>
 <div class="price">${money(p.price)}</div>
@@ -239,6 +243,17 @@ onerror="this.onerror=null;this.alt='Photo indisponible : ${p.file}';this.style.
 </div>
 </article>
 `).join('')||'<p class="noresult">Aucun modèle trouvé.</p>';
+}
+
+function nextImage(img){
+const p=products.find(x=>x.id===Number(img.dataset.id));
+if(!p)return;
+const options=[...(p.alts||[]),`${p.id}.jpg.jpg`,`${p.id}.JPG`,`${p.id}.jpg`];
+const attempt=Number(img.dataset.attempt||0);
+if(attempt<options.length){
+img.dataset.attempt=attempt+1;
+img.src=encodeURI(options[attempt]);
+}
 }
 
 function addToCart(id){
@@ -262,6 +277,25 @@ cart.splice(i,1);
 updateCart();
 }
 
+function updatePreview(){
+const name=document.getElementById('customerName').value.trim();
+const phone=document.getElementById('customerPhone').value.trim();
+const address=document.getElementById('customerAddress').value.trim();
+
+document.getElementById('orderPreview').innerHTML=`
+<strong>Récapitulatif du client</strong><br>
+👤 Nom : ${escapeHTML(name||'Non renseigné')}<br>
+📞 Téléphone : ${escapeHTML(phone||'Non renseigné')}<br>
+📍 Lieu : ${escapeHTML(address||'Non renseigné')}
+`;
+}
+
+function escapeHTML(value){
+return value.replace(/[&<>"']/g,function(c){
+return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+});
+}
+
 function updateCart(){
 document.getElementById('count').textContent=cart.length;
 
@@ -278,14 +312,17 @@ cart.map((p,i)=>`
 '<div class="empty">Votre panier est vide.</div>';
 
 const total=cart.reduce((s,p)=>s+p.price,0);
-document.getElementById('total').textContent=
-cart.length?'Total : '+money(total):'';
+document.getElementById('total').textContent=cart.length?'Total : '+money(total):'';
+
+updatePreview();
 }
 
-function sendWhatsApp(){
+function prepareWhatsApp(event){
+event.preventDefault();
+
 if(cart.length===0){
-alert('Votre panier est vide. Ajoutez une chaussure avant de commander.');
-return;
+alert('Votre panier est vide.');
+return false;
 }
 
 const name=document.getElementById('customerName').value.trim();
@@ -293,29 +330,32 @@ const phone=document.getElementById('customerPhone').value.trim();
 const address=document.getElementById('customerAddress').value.trim();
 
 if(!name||!phone||!address){
-alert('Veuillez remplir votre nom, votre numéro et votre lieu de livraison ou de retrait.');
-return;
+alert('Veuillez renseigner le nom, le numéro de téléphone et le lieu de livraison ou de retrait.');
+return false;
 }
 
 const total=cart.reduce((s,p)=>s+p.price,0);
+const siteBase='https://dioa1009060001.github.io/fof-boutiques-/';
 
 const msg=
 '🛍️ NOUVELLE COMMANDE - FOF BOUTIQUE\n\n'+
-'👤 CLIENT : '+name+'\n'+
-'📞 TÉLÉPHONE : '+phone+'\n'+
-'📍 LIVRAISON / RETRAIT : '+address+'\n\n'+
-'👟 ARTICLES COMMANDÉS :\n\n'+
-cart.map((p,i)=>
-(i+1)+'. '+p.name+
-'\nPointure : '+p.size+
-'\nPrix : '+money(p.price)+
-'\nPhoto : '+photoURL(p.file)
+'👤 NOM DU CLIENT : '+name+'\n'+
+'📞 NUMÉRO DU CLIENT : '+phone+'\n'+
+'📍 LIEU : '+address+'\n\n'+
+'👟 ARTICLES COMMANDÉS :\n'+
+cart.map(p=>
+'- '+p.name+
+' | Pointure '+p.size+
+' | '+money(p.price)+
+'\nPhoto : '+siteBase+encodeURIComponent(p.file)
 ).join('\n\n')+
 '\n\n💰 TOTAL : '+money(total)+
-'\n\nMerci de confirmer la disponibilité de ma commande.';
+'\n\nMerci de confirmer ma commande.';
 
-const url='https://wa.me/2250566407588?text='+encodeURIComponent(msg);
-window.open(url,'_blank');
+const whatsappURL='https://wa.me/2250566407588?text='+encodeURIComponent(msg);
+window.open(whatsappURL,'_blank');
+
+return false;
 }
 
 function openCart(){
@@ -328,11 +368,13 @@ document.getElementById('cart').classList.remove('open');
 document.getElementById('overlay').classList.remove('show');
 }
 
+document.getElementById('customerName').addEventListener('input',updatePreview);
+document.getElementById('customerPhone').addEventListener('input',updatePreview);
+document.getElementById('customerAddress').addEventListener('input',updatePreview);
+
 render();
 updateCart();
-</script>
 
-<script>
 if('serviceWorker' in navigator){
 window.addEventListener('load',function(){
 navigator.serviceWorker.register('./service-worker.js')
